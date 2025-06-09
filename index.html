@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Productivity Dashboard</h1>
+            <p class="subtitle">Your personal command center for daily success</p>
+            <div class="productivity-score">
+                <div class="score-circle">
+                    <span id="productivity-score">85</span>
+                    <small>Score</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Grid -->
+        <main class="dashboard">
+            <!-- Clock Widget -->
+            <section class="widget clock-widget">
+                <div class="widget-header">
+                    <h2>Time & Date</h2>
+                    <div class="time-zone-selector">
+                        <select id="timezone-selector">
+                            <option value="auto">Auto</option>
+                            <option value="America/New_York">New York</option>
+                            <option value="America/Los_Angeles">Los Angeles</option>
+                            <option value="Europe/London">London</option>
+                            <option value="Europe/Paris">Paris</option>
+                            <option value="Asia/Tokyo">Tokyo</option>
+                            <option value="Asia/Shanghai">Shanghai</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="clock-display">
+                    <div class="time" id="current-time">12:00:00</div>
+                    <div class="date" id="current-date">Monday, January 1, 2024</div>
+                    <div class="timezone" id="timezone">GMT</div>
+                </div>
+            </section>
+
+            <!-- Weather Widget -->
+            <section class="widget weather-widget">
+                <div class="widget-header">
+                    <h2>Weather</h2>
+                    <button class="refresh-btn" id="weather-refresh">↻</button>
+                </div>
+                <div class="weather-content">
+                    <div class="weather-main" id="weather-main">
+                        <div class="weather-icon" id="weather-icon">☀️</div>
+                        <div class="temperature">22°C</div>
+                        <div class="condition">Sunny</div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail">
+                            <span>Humidity</span>
+                            <span id="humidity">65%</span>
+                        </div>
+                        <div class="detail">
+                            <span>Wind</span>
+                            <span id="wind">12 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quote Widget -->
+            <section class="widget quote-widget">
+                <div class="widget-header">
+                    <h2>Daily Inspiration</h2>
+                    <div class="quote-controls">
+                        <button class="refresh-btn" id="quote-refresh">↻</button>
+                        <button class="favorite-btn" id="quote-favorite">♡</button>
+                    </div>
+                </div>
+                <div class="quote-content">
+                    <blockquote id="quote-text">
+                        "The only way to do great work is to love what you do."
+                    </blockquote>
+                    <cite id="quote-author">- Steve Jobs</cite>
+                </div>
+            </section>
+
+            <!-- Quick Notes Widget -->
+            <section class="widget notes-widget">
+                <div class="widget-header">
+                    <h2>Quick Notes</h2>
+                    <button class="clear-btn" id="clear-notes">Clear</button>
+                </div>
+                <textarea id="quick-notes" placeholder="Jot down your thoughts, ideas, or reminders..."></textarea>
+                <div class="notes-info">
+                    <span id="word-count">0 words</span>
+                    <span id="auto-save-status">Auto-saved</span>
+                </div>
+            </section>
+
+            <!-- Pomodoro Timer Widget -->
+            <section class="widget timer-widget">
+                <div class="widget-header">
+                    <h2>Focus Timer</h2>
+                    <select id="timer-mode">
+                        <option value="25">Work (25m)</option>
+                        <option value="5">Short Break (5m)</option>
+                        <option value="15">Long Break (15m)</option>
+                        <option value="45">Deep Work (45m)</option>
+                    </select>
+                </div>
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle
+                                class="progress-ring-circle"
+                                stroke="currentColor"
+                                stroke-width="6"
+                                fill="transparent"
+                                r="54"
+                                cx="60"
+                                cy="60"/>
+                        </svg>
+                        <div class="timer-time" id="timer-time">25:00</div>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="start-timer" class="timer-btn primary">Start</button>
+                        <button id="pause-timer" class="timer-btn">Pause</button>
+                        <button id="reset-timer" class="timer-btn">Reset</button>
+                    </div>
+                    <div class="timer-stats">
+                        <span>Sessions today: <span id="sessions-today">0</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Water Intake Widget -->
+            <section class="widget water-widget">
+                <div class="widget-header">
+                    <h2>Water Intake</h2>
+                    <span class="water-goal" id="water-goal">0/8 glasses</span>
+                </div>
+                <div class="water-display">
+                    <div class="water-bottle">
+                        <div class="water-level" id="water-level"></div>
+                        <div class="water-waves"></div>
+                    </div>
+                    <div class="water-controls">
+                        <button id="add-water" class="water-btn">💧 Add Glass</button>
+                        <button id="reset-water" class="water-btn secondary">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mood Tracker Widget -->
+            <section class="widget mood-widget">
+                <div class="widget-header">
+                    <h2>Mood Tracker</h2>
+                    <span class="mood-streak" id="mood-streak">Track daily</span>
+                </div>
+                <div class="mood-selector">
+                    <button class="mood-btn" data-mood="1">😢</button>
+                    <button class="mood-btn" data-mood="2">😕</button>
+                    <button class="mood-btn" data-mood="3">😐</button>
+                    <button class="mood-btn" data-mood="4">😊</button>
+                    <button class="mood-btn" data-mood="5">😄</button>
+                </div>
+                <div class="mood-history" id="mood-history"></div>
+            </section>
+            
+            <!-- Todo Widget -->
+            <section class="widget todo-widget">
+                <div class="widget-header">
+                    <h2>Tasks</h2>
+                    <div class="todo-controls">
+                        <span class="task-count" id="task-count">0 tasks</span>
+                        <select id="todo-filter">
+                            <option value="all">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="priority">Priority</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="todo-input">
+                    <input type="text" id="todo-input" placeholder="Add a new task..." maxlength="100">
+                    <select id="todo-priority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <button id="add-todo" class="add-btn">+</button>
+                </div>
+                <ul class="todo-list" id="todo-list"></ul>
+            </section>
+
+            <!-- Habit Tracker Widget -->
+            <section class="widget habit-widget">
+                <div class="widget-header">
+                    <h2>Daily Habits</h2>
+                    <span class="habit-streak" id="habit-streak">🔥 3 day streak</span>
+                </div>
+                <div class="habit-input">
+                    <input type="text" id="habit-input" placeholder="Add a new habit..." maxlength="50">
+                    <button id="add-habit" class="add-btn">+</button>
+                </div>
+                <div class="habit-list" id="habit-list"></div>
+            </section>
+
+            <!-- Expense Tracker Widget -->
+            <section class="widget expense-widget">
+                <div class="widget-header">
+                    <h2>Daily Expenses</h2>
+                    <span class="total-amount" id="total-amount">$0.00</span>
+                </div>
+                <div class="expense-input">
+                    <input type="text" id="expense-description" placeholder="What did you buy?" maxlength="50">
+                    <select id="expense-category">
+                        <option value="food">🍔 Food</option>
+                        <option value="transport">🚗 Transport</option>
+                        <option value="shopping">🛍️ Shopping</option>
+                        <option value="entertainment">🎬 Entertainment</option>
+                        <option value="bills">📄 Bills</option>
+                        <option value="other">📦 Other</option>
+                    </select>
+                    <input type="number" id="expense-amount" placeholder="Amount" step="0.01" min="0">
+                    <button id="add-expense" class="add-btn">+</button>
+                </div>
+                <ul class="expense-list" id="expense-list"></ul>
+                <div class="expense-chart" id="expense-chart"></div>
+            </section>
+        </main>
+    </div>
+
+
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/clock.js"></script>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/todo.js"></script>
+    <script src="scripts/quotes.js"></script>
+    <script src="scripts/expenses.js"></script>
+    <script src="scripts/timer.js"></script>
+    <script src="scripts/habits.js"></script>
+    <script src="scripts/notes.js"></script>
+    <script src="scripts/water.js"></script>
+    <script src="scripts/mood.js"></script>
+    <script src="scripts/productivity.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
